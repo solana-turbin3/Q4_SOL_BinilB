@@ -29,4 +29,5 @@ umi.use(signerIdentity(signer));
         console.log("Oops.. Something went wrong", error);
     }
 })();
+
 //Your image URI:  https://devnet.irys.xyz/8KUvBJohDCU6L2hthkSHuyvaGhBfnmZbXLtk6Any5vHj
