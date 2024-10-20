@@ -1,4 +1,4 @@
-import wallet from "../wba-wallet.json"
+import wallet from "../cluster1/wallet/wba-wallet.json";
 import { createUmi } from "@metaplex-foundation/umi-bundle-defaults"
 import { createGenericFile, createSignerFromKeypair, signerIdentity } from "@metaplex-foundation/umi"
 import { irysUploader } from "@metaplex-foundation/umi-uploader-irys"
@@ -19,12 +19,14 @@ umi.use(signerIdentity(signer));
         //2. Convert image to generic file.
         //3. Upload image
 
-        // const image = ???
+        const image = await readFile("D:/web3/solana-starter/ts/genXr.png");
+        const genericFile = createGenericFile(image, 'My Rug', {contentType: 'image/png'});
+        const [myUri] = await umi.uploader.upload([genericFile]);
 
-        // const [myUri] = ??? 
-        // console.log("Your image URI: ", myUri);
+        console.log("Your image URI: ", myUri.replace("arweave.net", "devnet.irys.xyz"));
     }
     catch(error) {
         console.log("Oops.. Something went wrong", error);
     }
 })();
+//Your image URI:  https://devnet.irys.xyz/8KUvBJohDCU6L2hthkSHuyvaGhBfnmZbXLtk6Any5vHj
